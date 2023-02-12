@@ -59,7 +59,7 @@ public class LoginController {
             return "redirect:/";
         } else {
             // Show error message
-            model.addAttribute("error", "Username already exists");
+            model.addAttribute("message", "Username already exists");
             return "registrationPage";
         }
     }
