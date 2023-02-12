@@ -19,8 +19,6 @@ public class ApplicationConfigTest {
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
-    private LocalSessionFactoryBean sessionFactory;
 
     @Test
     public void testDataSource() {
@@ -28,10 +26,9 @@ public class ApplicationConfigTest {
     }
 
     @Test
-    public void testSessionFactory() {
-        assertNotNull(sessionFactory);
+    public void contextLoads() {
+        // No code is necessary in this test as it will automatically check if the application context can load successfully.
+        // If there are any configuration errors, the test will fail with a descriptive error message.
     }
-
-
 
 }

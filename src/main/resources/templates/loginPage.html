@@ -2,21 +2,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
+    <style>
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 500px;
+            margin: 0 auto;
+        }
+        .form-input {
+            margin: 10px 0;
+            width: 100%;
+        }
+        .form-input label {
+            width: 100%;
+            text-align: left;
+        }
+        .form-input input[type="text"],
+        .form-input input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .form-actions input[type="submit"] {
+            width: 45%;
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-<h1>Login</h1>
-<form action="#" th:action="@{/login}" th:object="${user}" method="post">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" th:field="*{username}"/>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" th:field="*{password}"/>
-    </div>
-    <div>
-        <input type="submit" value="Login"/>
-    </div>
-</form>
+<div class="form-container">
+    <h1>Login</h1>
+    <form action="#" th:action="@{/loginPage}" th:object="${user}" method="post">
+        <div class="form-input">
+            <label for="username">Username:</label>
+            <input type="text" id="username" th:field="*{username}"/>
+        </div>
+        <div class="form-input">
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Login"/>
+            <a href="/registration" role="button">Register</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>
