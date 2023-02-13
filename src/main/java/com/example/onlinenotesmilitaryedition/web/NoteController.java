@@ -1,49 +1,60 @@
 package com.example.onlinenotesmilitaryedition.web;
 
 
-import com.example.onlinenotesmilitaryedition.dao.NoteService;
-import com.example.onlinenotesmilitaryedition.dao.UserService;
+import com.example.onlinenotesmilitaryedition.dao.NoteServiceImpl;
+import com.example.onlinenotesmilitaryedition.models.User;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.example.onlinenotesmilitaryedition.models.Note;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/notes")
+@Controller
 public class NoteController {
 
 
-    private final NoteService noteService;
+    private final NoteServiceImpl noteService;
 
-    public NoteController(NoteService noteService){
+    @Autowired
+    public NoteController(NoteServiceImpl noteService){
         this.noteService = noteService;
     }
 
-    @PostMapping
-    public Note saveNote(@RequestBody Note note){
-        return noteService.save(note);
+    @GetMapping("/notes")
+    public String displayNotes(@ModelAttribute User user, Model model){
+        return "notes";
     }
 
-    @GetMapping
-    public List<Note> findAllNotes() {
-        return noteService.findAll();
+    @GetMapping("/createNote")
+    public String displayCreateNote(@ModelAttribute User user, Model model){
+        model.addAttribute("user", user);
+        return "createNote";
     }
 
-    @GetMapping("/{id}")
-    public Note findNoteById(@PathVariable("id") long id){
-        return noteService.findByUserId(id);
+    @PostMapping("/createNote")
+    public String addNote(@ModelAttribute User user, Model model){
+        return "redirect:/notes";
     }
 
 
-    @PutMapping("/{id}")
-    public Note updateNote(@PathVariable("id") long id, @RequestBody Note note) {
-        note.setId(id);
-        return noteService.save(note);
+
+
+
+    @PostMapping("/saveNote")
+    public String saveNote(@RequestParam("noteTitle") String noteTitle,
+                           @RequestParam("noteBody") String noteBody,
+                           HttpSession session) {
+        Note note = new Note();
+        User user = (User) session.getAttribute("user");
+        note.setTitle(noteTitle);
+        note.setBody(noteBody);
+        note.setUserId(user.getId());
+        noteService.save(note);
+        return "redirect:/notes";
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteNote(@PathVariable("id") long id){
-        noteService.deleteById(id);
-    }
+
+
 }

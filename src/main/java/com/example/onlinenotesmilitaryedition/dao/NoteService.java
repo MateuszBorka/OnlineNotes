@@ -11,7 +11,8 @@ public interface NoteService {
 
     Note findByTitle(String title);
 
-    Note save(Note note);
+    void save(Note note);
+
 
     List<Note> findAll();
 

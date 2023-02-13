@@ -9,8 +9,13 @@ import java.util.List;
 @Service
 public class NoteServiceImpl implements NoteService{
 
+    private final NoteDao noteDao;
     @Autowired
-    private NoteDao noteDao;
+    public NoteServiceImpl(NoteDao noteDao){
+        this.noteDao = noteDao;
+    }
+
+
 
 
     @Override
@@ -24,8 +29,8 @@ public class NoteServiceImpl implements NoteService{
     }
 
     @Override
-    public Note save(Note note) {
-        return null;
+    public void save(Note note) {
+        noteDao.save(note);
     }
 
     @Override
