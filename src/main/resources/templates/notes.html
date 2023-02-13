@@ -1,10 +1,59 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--  <title>Notes</title>-->
+<!--</head>-->
+<!--<body>-->
+
+
+
+<!--<div class="form-container">-->
+<!--  <h1>Notes</h1>-->
+<!--  <p>Here you can view and create your notes.</p>-->
+
+<!--  <form action="#" th:action="@{/notes}" method="post">-->
+<!--    <div class="form-actions">-->
+<!--      <a href="/createNote" role="button" type="">Create new note</a>-->
+<!--    </div>-->
+<!--  </form>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <title>Notes</title>
 </head>
 <body>
-<h1>Notes</h1>
-<p>Here you can view and create your notes.</p>
+
+
+
+<div class="form-container">
+  <h1>Notes</h1>
+  <p>Here you can view and create your notes.</p>
+
+  <form action="#" th:action="@{/notes}" method="post">
+    <div class="form-actions">
+      <a href="/createNote" role="button" type="">Create new note</a>
+    </div>
+
+    <div class="notes-list">
+      <h2>Your Notes:</h2>
+      <ul>
+        <li th:each="note : ${notes}" th:text="${note.title}" th:href="@{/note/{id}(id=${note.id})}"></li>
+      </ul>
+    </div>
+  </form>
+</div>
+
+
 </body>
 </html>
+
+
+

@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.example.onlinenotesmilitaryedition.models.Note;
 
+import java.util.List;
+
 @Controller
 public class NoteController {
 
@@ -23,7 +25,10 @@ public class NoteController {
     }
 
     @GetMapping("/notes")
-    public String displayNotes(@ModelAttribute User user, Model model){
+    public String displayNotes(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        List<Note> notes = noteService.findAllByUserId(user.getId());
+        model.addAttribute("notes", notes);
         return "notes";
     }
 

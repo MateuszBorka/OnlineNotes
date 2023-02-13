@@ -23,6 +23,7 @@ public class NoteServiceImpl implements NoteService{
         return null;
     }
 
+
     @Override
     public Note findByTitle(String title) {
         return null;
@@ -37,6 +38,12 @@ public class NoteServiceImpl implements NoteService{
     public List<Note> findAll() {
         return null;
     }
+
+    @Override
+    public List<Note> findAllByUserId(long userId){
+        return noteDao.findAllByUserId(userId);
+    }
+
 
     @Override
     public void deleteById(long id) {
