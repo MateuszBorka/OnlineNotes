@@ -16,17 +16,14 @@ public class NoteServiceImpl implements NoteService{
     }
 
 
-
-
     @Override
     public Note findByUserId(long userId) {
         return null;
     }
 
-
     @Override
-    public Note findByTitle(String title) {
-        return null;
+    public Note findById(long id) {
+        return noteDao.findById(id);
     }
 
     @Override
@@ -35,18 +32,12 @@ public class NoteServiceImpl implements NoteService{
     }
 
     @Override
-    public List<Note> findAll() {
-        return null;
-    }
-
-    @Override
     public List<Note> findAllByUserId(long userId){
         return noteDao.findAllByUserId(userId);
     }
 
-
     @Override
     public void deleteById(long id) {
-
+        noteDao.deleteById(id);
     }
 }

@@ -8,6 +8,9 @@ import java.util.List;
 public interface NoteDao extends JpaRepository<Note, Long> {
         Note findByUserId(long userId);
 
+        Note findById(long id);
+
         List<Note> findAllByUserId(long userId);
+
 
 }

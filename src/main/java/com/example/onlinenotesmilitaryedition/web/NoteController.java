@@ -44,9 +44,6 @@ public class NoteController {
     }
 
 
-
-
-
     @PostMapping("/saveNote")
     public String saveNote(@RequestParam("noteTitle") String noteTitle,
                            @RequestParam("noteBody") String noteBody,
@@ -60,6 +57,25 @@ public class NoteController {
         return "redirect:/notes";
     }
 
+    @GetMapping("/note/{id}")
+    public String getNote(@PathVariable Long id, Model model) {
+        Note note = noteService.findById(id);
+        model.addAttribute("note", note);
+        return "note";
+    }
 
+    @GetMapping("/deleteNote")
+    public String deleteNotes(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        List<Note> notes = noteService.findAllByUserId(user.getId());
+        model.addAttribute("notes", notes);
+        return "deleteNote";
+    }
+
+    @GetMapping("/deleteNote/{id}")
+    public String deleteNote(@PathVariable Long id, Model model){
+        noteService.deleteById(id);
+        return "redirect:/notes";
+    }
 
 }

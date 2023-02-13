@@ -8,24 +8,19 @@
 
 
 <div class="form-container">
-  <h1>Notes</h1>
-  <p>Here you can view and create your notes.</p>
+  <h1>Delete Note</h1>
+  <p>Chose the note to delete</p>
 
   <form action="#" th:action="@{/notes}" method="post">
     <div class="form-actions">
-      <a href="/createNote" role="button" type="">Create new note</a>
+      <a href="/notes" role="button" type="">Return to the notes</a>
     </div>
-
-    <div class="form-actions">
-      <a href="/deleteNote" role="button" type="">Delete note</a>
-    </div>
-
 
     <div class="notes-list">
       <h2>Your Notes:</h2>
       <ul>
         <li th:each="note : ${notes}">
-          <a th:text="${note.title}" th:href="@{/note/{id}(id=${note.id})}" />
+          <a th:text="${note.title}" th:href="@{/deleteNote/{id}(id=${note.id})}" />
         </li>
       </ul>
     </div>

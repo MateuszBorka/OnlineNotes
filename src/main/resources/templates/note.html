@@ -1,22 +1,41 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--  <title>Notes</title>-->
+<!--</head>-->
+<!--<body>-->
+
+
+
+<!--<div class="form-container">-->
+<!--  <h1>Note</h1>-->
+<!--  <p>Here will be displayed your note.</p>-->
+
+<!--  <form action="#" th:action="@{/notes}" method="post">-->
+<!--    <div class="form-actions">-->
+<!--      <a href="/createNote" role="button" type="">Create new note</a>-->
+<!--    </div>-->
+<!--  </form>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <title>Notes</title>
+  <title>Note</title>
 </head>
 <body>
 
-
-
 <div class="form-container">
   <h1>Note</h1>
-  <p>Here will be displayed your note.</p>
 
-  <form action="#" th:action="@{/notes}" method="post">
-    <div class="form-actions">
-      <a href="/createNote" role="button" type="">Create new note</a>
-    </div>
-  </form>
-
+  <div class="note-details">
+    <h2 th:text="${note.title}"></h2>
+    <p th:text="${note.body}"></p>
+  </div>
 </div>
 
 </body>

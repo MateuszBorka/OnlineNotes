@@ -9,13 +9,9 @@ public interface NoteService {
 
     Note findByUserId(long userId);
 
-
-    Note findByTitle(String title);
+    Note findById(long id);
 
     void save(Note note);
-
-
-    List<Note> findAll();
 
     List<Note> findAllByUserId(long userId);
 
