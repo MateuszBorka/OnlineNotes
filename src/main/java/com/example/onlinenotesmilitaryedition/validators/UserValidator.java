@@ -31,5 +31,17 @@ public class UserValidator implements Validator {
         if (userDao.findByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "username.alreadyExists", "Username already exists");
         }
+        else if (user.getUsername().length() < 5 ){
+            errors.rejectValue("username", "username.hasWrongLength", "Username is too short");
+        }
+        else  if (user.getUsername().length() > 20) {
+            errors.rejectValue("username", "username.hasWrongLength", "Username is too long");
+        }
+
+
+        if (user.getPassword().length() < 6 ){
+            errors.rejectValue("password", "password.hasWrongLength", "Password is too short");
+        }
+
     }
 }

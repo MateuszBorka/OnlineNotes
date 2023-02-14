@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 
 
 import javax.validation.Valid;
+import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -23,7 +24,7 @@ public class UserController {
     private final UserValidator userValidator;
 
     @Autowired
-    public UserController(UserService userService, UserValidator userValidator){
+    public UserController(UserService userService, UserValidator userValidator) {
         this.userService = userService;
         this.userValidator = userValidator;
     }
@@ -35,12 +36,22 @@ public class UserController {
     }
 
 
-
     @PostMapping("/register")
     public String registerUser(@ModelAttribute @Valid User user, BindingResult result, Model model) {
         userValidator.validate(user, result);
         if (result.hasErrors()) {
-            model.addAttribute("message", "Username already exists");
+            if (result.hasFieldErrors("username")) {
+                model.addAttribute(
+                        "message",
+                        Objects.requireNonNull(result.getFieldError("username")).getDefaultMessage()
+                );
+            }
+            else if (result.hasFieldErrors("password")) {
+                model.addAttribute(
+                  "message",
+                  Objects.requireNonNull(result.getFieldError("password")).getDefaultMessage()
+                );
+            }
             return "registrationPage";
         } else {
             // Save the new user in the database

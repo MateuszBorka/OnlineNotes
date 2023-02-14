@@ -15,7 +15,6 @@ public class NoteServiceImpl implements NoteService{
         this.noteDao = noteDao;
     }
 
-
     @Override
     public Note findByUserId(long userId) {
         return null;
