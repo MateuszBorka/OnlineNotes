@@ -9,13 +9,18 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Autowired //todo
     private UserDao userDao;
 
 
     @Override
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
+    }
+
+    @Override
+    public User findByUserId(Long userid) {
+        return userDao.findUserById(userid);
     }
 
     @Override

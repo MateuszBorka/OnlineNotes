@@ -7,9 +7,12 @@
 
 
 <div class="form-container">
-  <h1>Notes of user xxx</h1>
-<!--  todo-->
+  <h1>Notes of user <span th:text="${username}"></span></h1>
   <p>Here you can view and delete users notes.</p>
+
+  <div class="form-actions">
+    <a href="/deleteUsersNote" role="button" type="">Delete note</a>
+  </div>
 
   <form action="#" th:action="@{/notes}" method="post">
     <div class="notes-list">

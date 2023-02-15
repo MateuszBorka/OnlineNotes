@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Notes</title>
+</head>
+<body>
+
+
+
+<div class="form-container">
+    <h1>Delete Users note</h1>
+    <p>Chose the note to delete</p>
+
+    <form action="#" th:action="@{/deleteNoteByAdmin}" method="post">
+        <div class="notes-list">
+            <h2>Users Notes:</h2>
+            <ul>
+                <li th:each="note : ${notes}">
+                    <a th:text="${note.title}" th:href="@{/deleteNoteByAdmin/{id}(id=${note.id})}" />
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
