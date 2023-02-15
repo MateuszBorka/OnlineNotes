@@ -11,6 +11,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "adminRights")
+    private boolean adminRights;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
@@ -38,4 +40,14 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+    public boolean hasAdminRoots() {
+        return adminRights;
+    }
+
+    public void setAdminRights(boolean adminRights) {
+        this.adminRights = adminRights;
+    }
+
 }

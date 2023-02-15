@@ -1,7 +1,6 @@
 package com.example.onlinenotesmilitaryedition.web;
 
 import com.example.onlinenotesmilitaryedition.dao.UserService;
-import com.example.onlinenotesmilitaryedition.models.Note;
 import com.example.onlinenotesmilitaryedition.models.User;
 import com.example.onlinenotesmilitaryedition.validators.UserValidator;
 import jakarta.servlet.http.HttpSession;
@@ -68,7 +67,12 @@ public class UserController {
         if (existingUser != null && existingUser.getPassword().equals(user.getPassword())) {
             // Login successful, save the user in the session
             session.setAttribute("user", existingUser);
-            return "redirect:/notes";
+            if (existingUser.hasAdminRoots()) {
+                return "redirect:/adminPanel";
+            }
+            else {
+                return "redirect:/notes";
+            }
         } else {
             // Login failed, show error message
             model.addAttribute("error", "Invalid username or password");
