@@ -6,15 +6,17 @@
 <body>
 <h1>Admin Panel</h1>
 
-
 <form action="#" th:action="@{/users}" method="post">
+
+    <div class="form-actions">
+        <a href="/deleteUser" role="button" type="">Delete User</a>
+    </div>
 
     <div class="notes-list">
         <h2>Users:</h2>
         <ul>
             <li th:each="user : ${users}">
-                <a th:text="${user.username}" />
-<!--              todo           th:href="@{/note/{id}(id=${note.id})}"-->
+                <a th:text="${user.username}" th:href="@{/usersNotes/{userid}(userid=${user.id})}"/>
             </li>
         </ul>
     </div>

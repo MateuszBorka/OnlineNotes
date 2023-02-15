@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>User delete</title>
+</head>
+<body>
+<h1>Choose user to delete</h1>
+
+<form action="#" th:action="@{/users}" method="post">
+
+
+  <div class="notes-list">
+    <h2>Users:</h2>
+    <ul>
+      <li th:each="user : ${users}">
+        <a th:text="${user.username}" th:href="@{/deleteUser/{userid}(userid=${user.id})}" />
+      </li>
+    </ul>
+  </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Notes</title>
+</head>
+<body>
+
+
+
+<div class="form-container">
+  <h1>Notes of user xxx</h1>
+<!--  todo-->
+  <p>Here you can view and delete users notes.</p>
+
+  <form action="#" th:action="@{/notes}" method="post">
+    <div class="notes-list">
+      <ul>
+        <li th:each="note : ${notes}">
+          <a th:text="${note.title}" th:href="@{/viewNote/{id}(id=${note.id})}"/>
+        </li>
+      </ul>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
