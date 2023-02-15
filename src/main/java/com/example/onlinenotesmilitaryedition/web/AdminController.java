@@ -1,6 +1,5 @@
 package com.example.onlinenotesmilitaryedition.web;
 
-import com.example.onlinenotesmilitaryedition.dao.NoteService;
 import com.example.onlinenotesmilitaryedition.dao.NoteServiceImpl;
 import com.example.onlinenotesmilitaryedition.dao.UserService;
 import com.example.onlinenotesmilitaryedition.models.Note;
@@ -57,7 +56,7 @@ public class AdminController {
         session.setAttribute("userid", userid);
         model.addAttribute("notes", notes);
         model.addAttribute("username", userService.findByUserId(userid).getUsername());
-        return "/userNotes";
+        return "userNotes";
     }
 
 

@@ -67,7 +67,7 @@ public class UserController {
         if (existingUser != null && existingUser.getPassword().equals(user.getPassword())) {
             // Login successful, save the user in the session
             session.setAttribute("user", existingUser);
-            if (existingUser.hasAdminRoots()) {
+            if (existingUser.hasAdminRights()) {
                 return "redirect:/adminPanel";
             }
             else {

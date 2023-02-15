@@ -11,6 +11,8 @@
   <h1>Notes</h1>
   <p>Here you can view and create your notes.</p>
 
+  <h3><div class="message" th:if="${message}" th:text="${message}"></div></h3>
+
   <form action="#" th:action="@{/notes}" method="post">
     <div class="form-actions">
       <a href="/createNote" role="button" type="">Create new note</a>

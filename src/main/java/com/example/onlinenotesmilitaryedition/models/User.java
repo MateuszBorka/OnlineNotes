@@ -42,7 +42,7 @@ public class User {
     }
 
 
-    public boolean hasAdminRoots() {
+    public boolean hasAdminRights() {
         return adminRights;
     }
 
