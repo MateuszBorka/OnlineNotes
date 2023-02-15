@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.example.onlinenotesmilitaryedition.models.Note;
 
@@ -39,7 +38,7 @@ public class NoteController {
     }
 
     @PostMapping("/createNote")
-    public String addNote(@ModelAttribute User user, Model model){
+    public String addNote(@ModelAttribute User user){
         return "redirect:/notes";
     }
 
@@ -57,9 +56,21 @@ public class NoteController {
         return "redirect:/notes";
     }
 
+
+    @PostMapping("/updateNote")
+    public String updateNote(@ModelAttribute Note note, HttpSession session) {
+
+        Note originalNote = (Note) session.getAttribute("note");
+        originalNote.setTitle(note.getTitle());
+        originalNote.setBody(note.getBody());
+        noteService.save(originalNote);
+        return "redirect:/notes";
+    }
+
     @GetMapping("/note/{id}")
-    public String getNote(@PathVariable Long id, Model model) {
+    public String getNote(@PathVariable Long id, Model model, HttpSession session) {
         Note note = noteService.findById(id);
+        session.setAttribute("note", note);
         model.addAttribute("note", note);
         return "note";
     }
@@ -73,7 +84,7 @@ public class NoteController {
     }
 
     @GetMapping("/deleteNote/{id}")
-    public String deleteNote(@PathVariable Long id, Model model){
+    public String deleteNote(@PathVariable Long id){
         noteService.deleteById(id);
         return "redirect:/notes";
     }

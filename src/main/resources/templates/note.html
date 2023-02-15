@@ -8,10 +8,21 @@
 <div class="form-container">
   <h1>Note</h1>
 
-  <div class="note-details">
-    <h2 th:text="${note.title}"></h2>
-    <p th:text="${note.body}"></p>
-  </div>
+  <form action="#" th:action="@{/updateNote}" th:object="${note}" method="post">
+    <div class="form-group">
+      <label for="noteTitle">Title:</label>
+      <input type="text" id="noteTitle" class="form-control" th:field="*{title}" />
+    </div>
+
+    <div class="form-group">
+      <label for="noteBody">Body:</label>
+      <textarea id="noteBody" class="form-control" th:field="*{body}"></textarea>
+    </div>
+
+    <input type="submit" value="Update Note" />
+  </form>
+
+
 </div>
 
 </body>

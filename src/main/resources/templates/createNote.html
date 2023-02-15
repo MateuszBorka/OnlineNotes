@@ -13,12 +13,12 @@
     <p>Here you can create new note.</p>
     <form action="#" th:action="@{/saveNote}" method="post">
         <div class="form-input">
-            <label for="noteTitle">Note Title:</label>
+            <label for="noteTitle">Title:</label>
             <input type="text" id="noteTitle" name="noteTitle"/>
         </div>
         <div class="form-input">
-            <label for="noteBody">Note Body:</label>
-            <input type="text" id="noteBody" name="noteBody"/>
+            <label for="noteBody">Body:</label>
+            <textarea id="noteBody" name="noteBody"> </textarea>
         </div>
         <div class="form-actions">
             <input type="submit" value="Save"/>
